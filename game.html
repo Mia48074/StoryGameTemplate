@@ -50,25 +50,42 @@
 
         <p id="message-display"></p>
     </section>
-       <h1>People vs. McCulloch</h1>
-    <h2>John McCulloch has admitted to killing a 30 year old woman named Fiona Jones but pled not guilty of first degree murder, claiming his actions instead constitute Voluntary Manslaughter due to a sudden loss of control</h2>
-    <h2>McCulloch admitted to having had a six month long romantic relationship with Jones before she cut him off, leading to her murder</h2>
-    <h2>As a member of the jury, your job is not to determine if McCulloch killed JOnes, but to evaluate his mental state. You must decide if the evidence proves malice afterthought and premeditation(First Degree Murder) or if his neurological disease triggered a legally mitigating heat of passion(Voluntary Manslaughter)</h2>
+    <h1>People vs. McCulloch</h1>
     <img src="/pictures/170000/cards/law-and-justice-concept.jpg.card-v2.webp?v=1788624568" srcset="/pictures/170000/cards/law-and-justice-concept.jpg.card-v2.webp?v=1788624568 640w, /pictures/170000/cards/law-and-justice-concept.jpg.card-v2.webp?v=1788624568 640w" sizes="(max-width: 620px) 50vw, (max-width: 900px) 33vw, (max-width: 1180px) 25vw, 20vw" width="640" height="480" alt="Law and Justice Concept" loading="lazy" decoding="async" class="pdp-thumbnail-foreground">
-    <h2>What would you like to examine?</h2>
+    <h2>After reading the evidence provided by the court, fill out the form below</h2>
     <img src="/pictures/490000/cards/blood-splatter-background-clipart.jpg.card-v2.webp?v=1788835521" srcset="/pictures/490000/cards/blood-splatter-background-clipart.jpg.card-v2.webp?v=1788835521 640w, /pictures/490000/cards/blood-splatter-background-clipart.jpg.card-v2.webp?v=1788835521 640w" sizes="(max-width: 620px) 50vw, (max-width: 900px) 33vw, (max-width: 1180px) 25vw, 20vw" width="640" height="480" alt="Blood Splatter Background Clipart" loading="lazy" decoding="async" class="pdp-thumbnail-foreground">
-    <form>
-    <label for="evidence"></label>
-    <select name="evidence" id="evidence">
-        <option value="Interviews">Interviews & Testimonies</option>
-        <option value="Hospital Room">Brain Scan</option>
-        <option value="Timeline">Timeline</option>
-    </select>
-    <p>Do you believe John McCulloch is guilty of first-degree murder?</p>
-    <labor for="yes">Guilty</labor>
-    <input type="radio" id="yes" name="yes">
-    <label for="no">Not Guilty</label>
-    <input type="radio" id="no" name="no">
+    <form action = "game.html" method = "get">
+        <h3><label for="relationship">1. How long was the relationship between McCulloch and Jones?</label></h3>
+        <select id="relationship" name="relationship">
+            <option value="3">3 months</option>
+            <option value="6">6 months</option>
+            <option value="12">A year</option>
+        </select>
+        <br><br>
+
+         <h3>2. What proves that McCulloch planned the murder? (Click all that is applicable)</h3>
+        <input type="checkbox" id="plan_key" name="plan" value="key">
+        <label for="plan_key">He made a copy of the key 3 weeks earlier</label><br>
+        <input type="checkbox" id="plan_history" name="plan" value="history">
+        <label for="plan_history">Google history: "How to delete phone location completely?"</label><br>
+        <input type="checkbox" id="plan_illness" name="plan" value="illness">
+        <label for="plan_illness">Doctors found a brain tumor</label><br>
+        
+        <h3>3. What symptoms did John display?</h3>
+        <textarea rows = "4" cols = "40" placeholder = "Specify everything that was testified"></textarea>
+
+        <h3>4. What is your final verdict?</h3>
+        <input type="radio" id="verdict_murder" name="verdict" value="murder">
+        <label for="verdict_murder"><strong>First Degree murder</strong></label>
+        <br><br>
+        <input type="radio" id="verdict_manslaughter" name="verdict" value="manslaughter">
+        <label for="verdict_manslaughter"><strong>Manslaughter</strong></label>
+        <br><br>
+        <input type="radio" id="verdict_innocent" name="verdict" value="innocent">
+        <label for="verdict_innocent"><strong>Not Guilty</strong></label>
+        <br><br>
+
+        <button type = "submit"> Submit your verdict</button>
     </form>
 
     </main>
