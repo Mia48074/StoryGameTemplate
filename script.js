@@ -43,17 +43,24 @@ const scenes = {
     ]
   },
 
-  entrance: {
-    title: "Location: Entrance",
-    character: "Interviewee:Neighbor",
-    text: "well what I remember...",
+  interrogation: {
+    title: "Location: Interrogation Room",
+    character: "Interviewee: Anna Smith",
+    text: "Anna fidgets with her hands, looking down. 'Well...what I remember doesn't make much sense. Fiona was terrified but she didn't want to involve the police.",
     choices: [
       {
-        text: "Ask about the dog",
-        nextScene: "backyard"
+        text: "Take a gentle approach: Can you tell me why Ms. Jones ended her relationship with Mr. McCulloch?",
+        cluerevealed: "Fiona found a hidden key in McCulloch's desk",
+        nextScene: "hallway"
       },
          {
-        text: "Ask about the neighbor",
+        text: "Press harder: I know this is hard, but we need to know why Fiona left him. What changed?",
+        cluerevealed: "McCulloch was tracking Fiona's phone location",
+        nextScene: "phone"
+      },
+      { 
+        text: "Focus on the facts: Can you tell me exactly why Ms.Jones ended her relationship with Mr. McCulloch?",
+        cluerevealed: "They had a violent argument in the backyard last Tuesday", 
         nextScene: "hallway"
       }
     ]
@@ -70,18 +77,22 @@ const scenes = {
     ]
   },
 
-   lockedDoor: {
-    title: "The Locked Door",
-    text: "The door handle doesn't move.",
+   phone: {
+    title: "Encrypted Digital Files",
+    text: "Select a timestamp from the recovery logs to analyze McCulloch's actions",
     choices: [
       {
-        text: "Try to open it",
-        action: unlockDoor
+        text: "[Log 1] 3 months prior - Medical Event",
+        action: check_tumor
       },
       {
-        text: "Go back",
-        nextScene: "backyard"
-      }
+        text: "[Log 2] 3 weeks prior - 14:15 - Location Data",
+        action: check_key
+      },
+      {
+        text: "[Log 3] Day of Incident - 18:30 - Router History",
+        action: check_search
+      },
     ]
   },
 
