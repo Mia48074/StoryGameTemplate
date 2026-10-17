@@ -114,34 +114,27 @@ const scenes = {
 // Use sceneTitle as a model
 // --------------------------------------------------
 
-// First, we create variables to hold the references to the HTML elements
-// Technically you could just use document.getElementById('id-name') 
-// in the function itself, but that would be very wordy 
-// and make the code harder to read
 const sceneTitle = document.getElementById("scene-title");
 const sceneText = document.getElementById("scene-text");
 const choicesContainer = document.getElementById("choices-container");
-const characterName = document.getElementById("character-name");
+const characterName = document.getElementById("character-name"); 
 
-// Then, we create a function to update the scene,
+
 function updateScene(sceneName) {
-
-  //This update the variable currentScene with the new scene passed as a parameter
   currentScene = sceneName;
-
-  //This accesses the scene object based on the scene name
   const scene = scenes[sceneName];
-
-  // Here, for each html element, you change the textContent to match
-  // the appropriate text from the scene object
-  sceneTitle.textContent = scene.title;
-  sceneText.textContent = scene.text;
-  characterName.textContent = scene.character;
-
-  // Clear the old buttons before creating new ones
+  const titleValue = scene.title;
+  const textValue = scene.text;
+  const characterValue = scene.character; 
+  sceneTitle.textContent = titleValue;
+  sceneText.textContent = textValue;
+  
+  if (characterValue) {
+    characterName.textContent = characterValue;
+  } else {
+    characterName.textContent = ""; 
+  }
   choicesContainer.innerHTML = "";
-
-  // Loop through each choice in the scene, connecting an action and nextScene if included
   scene.choices.forEach(function (choice) {
     const button = document.createElement("button");
 
@@ -161,7 +154,6 @@ function updateScene(sceneName) {
   });
 }
 
-// This updates the screen with the current scene
 updateScene(currentScene);
 
 
