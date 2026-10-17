@@ -25,7 +25,7 @@ const scenes = {
       {
         text: "Chase after the dog (-10 HP)",
         action: function () {
-          updateHealth(-10);
+          updateStress(-10);
         },
         nextScene: "entrance"
       },
@@ -167,20 +167,20 @@ updateScene(currentScene);
 // create a copy of each step for each additional state you want to track throughout the game
 // --------------------------------------------------
 
-// Create a variable for health
-let health = 100;
+// Create a variable for stress
+let stress = 0;
 
 // Display current health
-const healthDisplay = document.getElementById("health-display");
+const stressDisplay = document.getElementById("stress-display");
 
 // Create a function to update health 
 function updateHealth(amount) {
-  health += amount;
-  healthDisplay.textContent = health;
+  stress += amount;
+  stressDisplay.textContent = stress;
 }
 
 // This refreshes the health display
-updateHealth(0);
+updateStress(0);
 
 // --------------------------------------------------
 // INVENTORY
