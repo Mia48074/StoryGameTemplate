@@ -42,6 +42,17 @@ const scenes = {
       }
     ]
   },
+  secretFiles: {
+  title: "Location: Decrypted Phone Logs",
+  character: "System: Access Granted",
+  text: "The encryption key worked! You bypassed the security and found a hidden audio recording from the night Fiona disappeared. McCulloch can be heard arguing about a secret property.",
+  choices: [
+    {
+      text: "Go back to the hallway",
+      nextScene: "hallway"
+    }
+  ]
+},
 
   interrogation: {
     title: "Location: Interrogation Room",
@@ -50,8 +61,10 @@ const scenes = {
     choices: [
       {
         text: "Take a gentle approach: Can you tell me why Ms. Jones ended her relationship with Mr. McCulloch?",
-        cluerevealed: "Fiona found a hidden key in McCulloch's desk",
-        nextScene: "hallway"
+        action: function(){
+          pickUpItem("encryption key");
+        },
+        nextScene: "phone"
       },
          {
         text: "Press harder: I know this is hard, but we need to know why Fiona left him. What changed?",
@@ -216,6 +229,17 @@ function unlockDoor() {
     updateScene("solution");
   } else {
     messageDisplay.textContent = "The door is locked.";
+  }
+}
+function decryptPhoneData() {
+  if (inventory.includes("encryption key")) {
+    updateScene("secretFiles");
+    
+  } else {
+    if (messageDisplay) {
+      messageDisplay.textContent = "Access Denied: You need the encryption key to decrypt these files.";
+    }
+    
   }
 }
 
