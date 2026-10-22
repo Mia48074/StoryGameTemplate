@@ -1,3 +1,10 @@
 body{
   background-color: #de8b86;
 }
+.header{
+ background-color: #e6785b;
+ font-family: cursive;
+ letter-spacing: 0.2em;
+ border: 2px #70554e double;
+}
+
