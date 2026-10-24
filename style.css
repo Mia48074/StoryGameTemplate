@@ -7,4 +7,15 @@ body{
  letter-spacing: 0.2em;
  border: 2px #70554e double;
 }
-
+.card {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+            background-color: #f9f9f9;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #d9534f;
+        }
