@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head class=".heading">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -38,15 +38,19 @@
     </section>   
         
     <section>
-        <p> Current HP:</p>
-        <ul>
-            <li id="health-display"> 100</li>
-        </ul>
+    <div class="card" id="hp-card">
+     <p> Current HP:</p>
+     <ul>
+     <li id="stress-display"><span class=".highlight">100</span></li>
+     </ul>
+     </div>
 
-        <p> Inventory:</p>
-        <ul>
-            <li id="inventory-display"> </li>
-        </ul>
+      <div class="card" id="inventory-card">
+      <p> Inventory:</p>
+      <ul>
+      <li id="inventory-display"><span id="inventory-item">Empty</span></li>
+      </ul>
+      </div>
 
         <p id="message-display"></p>
     </section>
