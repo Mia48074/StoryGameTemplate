@@ -6,13 +6,18 @@ body{
  font-family: cursive;
  letter-spacing: 0.2em;
  border: 2px #70554e double;
+ padding: 50px;
+ margin: 20px;
 }
 .card {
  border: 1px solid #ccc;
  padding: 15px;
  margin: 10px 0;
  border-radius: 8px;
- background-color: #f9f9f9;
+ background-color: #f9f9f9;  
+ padding: 50px;
+ margin: 20px;
+ width:250px; 
 }
 .highlight {
  font-weight: bold;
