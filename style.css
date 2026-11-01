@@ -3,17 +3,17 @@
 body {
   background-color: #121214;   
   font-family: 'Smooch Sans', sans-serif; 
-  color: #e0e0e0;                
+  color: #02470d;                
   margin: 0;
   padding: 0;
 }
 
 .header {
-  background-color: #e6785b;
+  background-color: #d11121;
   font-family: 'Black Ops One', sans-serif; 
   letter-spacing: 0.2em;
   border: 2px double #70554e; 
-  padding: 50px;
+  padding: 15px;
   margin: 20px;
 }
 
