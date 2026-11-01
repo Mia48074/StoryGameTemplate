@@ -1,31 +1,57 @@
-body{
-  background-color: #de8b86;
+@import url('https://googleapis.com');
+
+body {
+  background-color: #121214;   
+  font-family: 'Smooch Sans', sans-serif; 
+  color: #e0e0e0;                
+  margin: 0;
+  padding: 0;
 }
-.header{
- background-color: #e6785b;
- font-family: cursive;
- letter-spacing: 0.2em;
- border: 2px #70554e double;
- padding: 50px;
- margin: 20px;
+
+.header {
+  background-color: #e6785b;
+  font-family: 'Black Ops One', sans-serif; 
+  letter-spacing: 0.2em;
+  border: 2px double #70554e; 
+  padding: 50px;
+  margin: 20px;
 }
-.card {
- border: 1px solid #ccc;
- padding: 15px;
- margin: 10px 0;
- border-radius: 8px;
- background-color: #f9f9f9;  
- width:250px; 
- height:200px;
-}
-.highlight {
- font-weight: bold;
- color: #d9534f;
-}
+
 .main-heading {
- font-size: 2.5rem;         
- font-weight: bold;          
- text-align: center;            
- color: #3e2723;                  
- margin: 20px 0;              
+  font-family: 'Black Ops One', sans-serif; 
+  font-size: 3rem; 
+  font-weight: bold;             
+  color: #3e2723;                  
+  margin: 20px;
+}
+
+.section-subheading {
+  font-family: 'Black Ops One', sans-serif; 
+  font-size: 1.8rem;
+  color: #5d4037;
+  margin: 15px;
+}
+
+.card {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin: 10px auto; 
+  border-radius: 8px;
+  background-color: #f9f9f9;  
+  width: 250px; 
+  min-height: 200px; 
+}
+
+.card-text {
+  font-family: 'Smooch Sans', sans-serif; 
+  font-size: 1.25rem; 
+  font-weight: 400;
+  line-height: 1.4;
+  color: #555555;
+  margin-bottom: 10px;
+}
+
+.highlight {
+  font-weight: 700; 
+  color: #d9534f;
 }
