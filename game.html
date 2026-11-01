@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<head class=".heading">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Courtroom Game</title>
+    <!-- LINK TO YOUR CSS FONTS & STYLES -->
+    <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
-
 </head>
 <body>
-    <header>
-      <nav>
+    <header class="header"> <!-- Added your header class here to style the navigation wrapper -->
+        <nav>
             <ul> 
                 <li><a href="index.html">Home</a></li>
             </ul>
@@ -24,13 +25,13 @@
 
     <main>
     <header>
-        <h1 id="main-heading" class=".main-heading">  </h1>
-        <h2 id="character-name"class=".main-heading">  </h2>
+        <!-- Corrected classes by removing the dots -->
+        <h1 id="main-heading" class="main-heading">Murder Mystery</h1>
+        <h2 id="character-name" class="section-subheading">Case File: McCulloch v. Jones</h2>
     </header>
     
     <section>
-    <p id="scene-text">     </p>
-
+        <p id="scene-text" class="card-text">Review the evidence carefully before rendering your decision.</p>
     </section>
 
     <section>
@@ -38,59 +39,70 @@
     </section>   
         
     <section>
-    <div class=".card" id="stress-card">
-     <p> Current Stress:</p>
-     <ul>
-     <li id="stress-display"><span class=".highlight">100</span></li>
-     </ul>
-     </div>
+        <!-- Fixed: class="card" instead of class=".card" -->
+        <div class="card" id="stress-card">
+            <p class="card-text"><strong>Current Stress:</strong></p>
+            <ul>
+                <li id="stress-display"><span class="highlight">100</span></li>
+            </ul>
+        </div>
 
-      <div class=".card" id="inventory-card">
-      <p> Inventory:</p>
-      <ul>
-      <li id="inventory-display"><span id="inventory-item" class=".highlight">Empty</span></li>
-      </ul>
-      </div>
+        <div class="card" id="inventory-card">
+            <p class="card-text"><strong>Inventory:</strong></p>
+            <ul>
+                <li id="inventory-display"><span id="inventory-item" class="highlight">Empty</span></li>
+            </ul>
+        </div>
 
-        <p id="message-display"></p>
+        <p id="message-display" class="card-text"></p>
     </section>
-    <img src="/pictures/170000/cards/law-and-justice-concept.jpg.card-v2.webp?v=1788624568" srcset="/pictures/170000/cards/law-and-justice-concept.jpg.card-v2.webp?v=1788624568 640w, /pictures/170000/cards/law-and-justice-concept.jpg.card-v2.webp?v=1788624568 640w" sizes="(max-width: 620px) 50vw, (max-width: 900px) 33vw, (max-width: 1180px) 25vw, 20vw" width="640" height="480" alt="Law and Justice Concept" loading="lazy" decoding="async" class="pdp-thumbnail-foreground">
-    <h2 font-style:oblique;>After reading the evidence provided by the court, fill out the form below</h2>
-    <img src="/pictures/490000/cards/blood-splatter-background-clipart.jpg.card-v2.webp?v=1788835521" srcset="/pictures/490000/cards/blood-splatter-background-clipart.jpg.card-v2.webp?v=1788835521 640w, /pictures/490000/cards/blood-splatter-background-clipart.jpg.card-v2.webp?v=1788835521 640w" sizes="(max-width: 620px) 50vw, (max-width: 900px) 33vw, (max-width: 1180px) 25vw, 20vw" width="640" height="480" alt="Blood Splatter Background Clipart" loading="lazy" decoding="async" class="pdp-thumbnail-foreground">
-    <form action = "game.html" method = "get">
-        <h3 text-indent:5em;><label for="relationship">1. How long was the relationship between McCulloch and Jones?</label></h3>
+
+    <img src="/pictures/170000/cards/law-and-justice-concept.jpg.card-v2.webp?v=1788624568" srcset="/pictures/170000/cards/law-and-justice-concept.jpg.card-v2.webp?v=1788624568 640w" sizes="(max-width: 620px) 50vw, (max-width: 900px) 33vw, (max-width: 1180px) 25vw, 20vw" width="640" height="480" alt="Law and Justice Concept" loading="lazy" decoding="async" class="pdp-thumbnail-foreground">
+    
+    <!-- Fixed non-standard inline styling into standard HTML style property -->
+    <h2 style="font-style: oblique;" class="section-subheading">After reading the evidence provided by the court, fill out the form below</h2>
+    
+    <img src="/pictures/490000/cards/blood-splatter-background-clipart.jpg.card-v2.webp?v=1788835521" srcset="/pictures/490000/cards/blood-splatter-background-clipart.jpg.card-v2.webp?v=1788835521 640w" sizes="(max-width: 620px) 50vw, (max-width: 900px) 33vw, (max-width: 1180px) 25vw, 20vw" width="640" height="480" alt="Blood Splatter Background Clipart" loading="lazy" decoding="async" class="pdp-thumbnail-foreground">
+    
+    <form action="game.html" method="get">
+        <!-- Added card-text class to clean up the form query typography -->
+        <h3 style="text-indent: 5em;" class="card-text">
+            <label for="relationship">1. How long was the relationship between McCulloch and Jones?</label>
+        </h3>
         <select id="relationship" name="relationship">
             <option value="3">3 months</option>
             <option value="6">6 months</option>
             <option value="12">A year</option>
         </select>
         
-
-         <h3 text-indent:5em;>2. What proves that McCulloch planned the murder? (Click all that is applicable)</h3>
+        <h3 style="text-indent: 5em;" class="card-text">2. What proves that McCulloch planned the murder? (Click all that apply)</h3>
         <input type="checkbox" id="plan_key" name="plan" value="key">
-        <label for="plan_key">He made a copy of the key 3 weeks earlier</label>
-        <input type="checkbox" id="plan_history" name="plan" value="history">
-        <label for="plan_history">Google history: "How to delete phone location completely?"</label>
-        <input type="checkbox" id="plan_illness" name="plan" value="illness">
-        <label for="plan_illness">Doctors found a brain tumor</label>
+        <label for="plan_key" class="card-text">He made a copy of the key 3 weeks earlier</label><br>
         
-        <h3 text-indent:5em;>3. What symptoms did John display?</h3>
-        <textarea rows = "4" cols = "40" placeholder = "Specify everything that was testified"></textarea>
+        <input type="checkbox" id="plan_history" name="plan" value="history">
+        <label for="plan_history" class="card-text">Google history: "How to delete phone location completely?"</label><br>
+        
+        <input type="checkbox" id="plan_illness" name="plan" value="illness">
+        <label for="plan_illness" class="card-text">Doctors found a brain tumor</label>
+        
+        <h3 style="text-indent: 5em;" class="card-text">3. What symptoms did John display?</h3>
+        <textarea rows="4" cols="40" placeholder="Specify everything that was testified"></textarea>
 
-        <h3 text-indent:5em;>4. What is your final verdict?</h3>
+        <h3 style="text-indent: 5em;" class="card-text">4. What is your final verdict?</h3>
         <input type="radio" id="verdict_murder" name="verdict" value="murder">
-        <label for="verdict_murder"><strong>First Degree murder</strong></label>
+        <label for="verdict_murder" class="card-text"><span class="highlight">First Degree murder</span></label><br>
+        
         <input type="radio" id="verdict_manslaughter" name="verdict" value="manslaughter">
-        <label for="verdict_manslaughter"><strong>Manslaughter</strong></label>
+        <label for="verdict_manslaughter" class="card-text">Manslaughter</label><br>
+        
         <input type="radio" id="verdict_innocent" name="verdict" value="innocent">
-        <label for="verdict_innocent"><strong>Not Guilty</strong></label>
+        <label for="verdict_innocent" class="card-text">Not Guilty</label><br><br>
 
-        <button type = "submit"> Submit your verdict</button>
+        <button type="submit">Submit your verdict</button>
     </form>
-
     </main>
-    <footer>
 
+    <footer>
     </footer>
 </body>
 </html>
