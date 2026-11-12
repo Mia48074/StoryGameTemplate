@@ -25,7 +25,7 @@ const scenes = {
       {
         text: "Chase after the dog (-10 HP)",
         action: function () {
-          updateStress(-10);
+          updateHealth(-10);
         },
         nextScene: "entrance"
       },
@@ -84,8 +84,46 @@ const scenes = {
     text: "The hallway is dark and silent.",
     choices: [
       {
-        text: "backyard",
+        text: "Try the locked door",
         nextScene: "lockedDoor"
+      },
+      {
+        text: "Go back to the backyard",
+        nextScene: "backyard"
+      },
+      {
+        text: "Go to the interrogation room",
+        nextScene: "interrogation"
+      }
+    ]
+  },
+
+  entrance: {
+    title: "Location: Entrance",
+    text: "You reach the entrance and can return outside or head into the house.",
+    choices: [
+      {
+        text: "Return to the backyard",
+        nextScene: "backyard"
+      },
+      {
+        text: "Go to the hallway",
+        nextScene: "hallway"
+      }
+    ]
+  },
+
+  lockedDoor: {
+    title: "Location: Locked Door",
+    text: "The door is locked. The brass key may open it.",
+    choices: [
+      {
+        text: "Use the brass key",
+        action: unlockDoor
+      },
+      {
+        text: "Return to the hallway",
+        nextScene: "hallway"
       }
     ]
   },
@@ -112,7 +150,7 @@ const scenes = {
    solution: {
     title: "The solution",
     text: "You solved the mystery!",
-    
+    choices: []
   }
 };
 
@@ -134,21 +172,23 @@ const characterName = document.getElementById("character-name");
 
 
 function updateScene(sceneName) {
-  currentScene = sceneName;
   const scene = scenes[sceneName];
-  const titleValue = scene.title;
-  const textValue = scene.text;
-  const characterValue = scene.character; 
-  sceneTitle.textContent = titleValue;
-  sceneText.textContent = textValue;
+  if (!scene || !sceneText || !choicesContainer) {
+    console.error(`Cannot display scene: ${sceneName}`);
+    return;
+  }
+
+  currentScene = sceneName;
+  if (sceneTitle) {
+    sceneTitle.textContent = scene.title || "";
+  }
+  sceneText.textContent = scene.text || "";
   
-  if (characterValue) {
-    characterName.textContent = characterValue;
-  } else {
-    characterName.textContent = ""; 
+  if (characterName) {
+    characterName.textContent = scene.character || "";
   }
   choicesContainer.innerHTML = "";
-  scene.choices.forEach(function (choice) {
+  (scene.choices || []).forEach(function (choice) {
     const button = document.createElement("button");
 
     button.textContent = choice.text;
@@ -167,7 +207,9 @@ function updateScene(sceneName) {
   });
 }
 
-updateScene(currentScene);
+if (sceneText && choicesContainer) {
+  updateScene(currentScene);
+}
 
 
 // --------------------------------------------------
@@ -189,11 +231,13 @@ const stressDisplay = document.getElementById("stress-display");
 // Create a function to update health 
 function updateHealth(amount) {
   stress += amount;
-  stressDisplay.textContent = stress;
+  if (stressDisplay) {
+    stressDisplay.textContent = stress;
+  }
 }
 
 // This refreshes the health display
-updateStress(0);
+updateHealth(0);
 
 // --------------------------------------------------
 // INVENTORY
@@ -214,7 +258,9 @@ function pickUpItem(itemName) {
     // Add itemName to the inventory array
     // Show the updated inventory on the page
   inventory.push(itemName);
-  inventoryDisplay.textContent = inventory.join(", ");
+  if (inventoryDisplay) {
+    inventoryDisplay.textContent = inventory.join(", ");
+  }
 }
 
 // --------------------------------------------------
@@ -227,7 +273,7 @@ function pickUpItem(itemName) {
 function unlockDoor() {
   if (inventory.includes("brass key")) {
     updateScene("solution");
-  } else {
+  } else if (messageDisplay) {
     messageDisplay.textContent = "The door is locked.";
   }
 }
@@ -239,7 +285,22 @@ function decryptPhoneData() {
     if (messageDisplay) {
       messageDisplay.textContent = "Access Denied: You need the encryption key to decrypt these files.";
     }
-    
+  }
+}
+
+function check_tumor() {
+  if (messageDisplay) {
+    messageDisplay.textContent = "The medical event log is from three months before the incident.";
+  }
+}
+
+function check_key() {
+  decryptPhoneData();
+}
+
+function check_search() {
+  if (messageDisplay) {
+    messageDisplay.textContent = "You selected the router history log from the day of the incident.";
   }
 }
 
