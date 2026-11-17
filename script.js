@@ -1,79 +1,74 @@
-
 // --------------------------------------------------
 // SCENES
-// Read through the comments below to see what this section does
-//
-// TO CUSTOMIZE THIS SECTION
-// 1) add fields for each scene, as relevant, to match your mockup
-// 2) customize the scenes to fit your story
-// 3) add any new fields to the function below
 // --------------------------------------------------
 
-// First, we create a variable for the current scene being displayed
 let currentScene = "backyard";
 
-// Then, we create an object that stores the data for each scene,
 const scenes = {
-  // See "backyard" for the first example
   backyard: {
     title: "Location: Backyard",
-    character: "Interviewee:Grandma",
-    text: "Text: well what I remember happening is that Darcie went inside to play with her pretend kitchen, I heard her neighbor mention he was really hungry, and the dog ran around really quickly",
-    // you can choose how many choices to include
-    // each choice can have text, an action, and/or nextScene
+    character: "Interviewee: Grandma",
+    text: "Well, what I remember happening is that Fiona and Mr. McCulloch were arguing out here, the neighbor mentioned hearing yelling, and the dog ran around really quickly before barking at something in the grass.",
     choices: [
       {
-        text: "Chase after the dog (-10 HP)",
+        text: "Chase after the dog toward the side gate (+10 Stress)",
         action: function () {
-          updateHealth(-10);
+          updateHealth(10);
         },
+        cluerevealed: "The dog was barking at freshly dug dirt near the fence—McCulloch rushed out this way.",
         nextScene: "entrance"
       },
       {
         text: "Ask about the neighbor",
+        cluerevealed: "The neighbor saw McCulloch's car parked across the street two hours before the fight.",
         nextScene: "hallway"
       },
       {
-          text: "Pick up the brass key",
-          action: function () {
-            pickUpItem("brass key");
-          },
-          nextScene: "hallway"
+        text: "Pick up the brass key",
+        action: function () {
+          pickUpItem("brass key");
+        },
+        nextScene: "hallway"
       }
     ]
   },
+
   secretFiles: {
-  title: "Location: Decrypted Phone Logs",
-  character: "System: Access Granted",
-  text: "The encryption key worked! You bypassed the security and found a hidden audio recording from the night Fiona disappeared. McCulloch can be heard arguing about a secret property.",
-  choices: [
-    {
-      text: "Go back to the hallway",
-      nextScene: "hallway"
-    }
-  ]
-},
+    title: "Location: Decrypted Phone Logs",
+    character: "System: Access Granted",
+    text: "The encryption key worked! You bypassed the security and found a hidden audio recording from the night Fiona disappeared. McCulloch can be heard arguing about a secret property.",
+    choices: [
+      {
+        text: "Go back to the phone logs",
+        nextScene: "phone"
+      },
+      {
+        text: "Go back to the hallway",
+        nextScene: "hallway"
+      }
+    ]
+  },
 
   interrogation: {
     title: "Location: Interrogation Room",
     character: "Interviewee: Anna Smith",
-    text: "Anna fidgets with her hands, looking down. 'Well...what I remember doesn't make much sense. Fiona was terrified but she didn't want to involve the police.",
+    text: "Anna fidgets with her hands, looking down. 'Well... what I remember doesn't make much sense. Fiona was terrified, but she didn't want to involve the police.'",
     choices: [
       {
         text: "Take a gentle approach: Can you tell me why Ms. Jones ended her relationship with Mr. McCulloch?",
-        action: function(){
+        action: function () {
           pickUpItem("encryption key");
         },
         nextScene: "phone"
       },
-         {
+      {
         text: "Press harder: I know this is hard, but we need to know why Fiona left him. What changed?",
         cluerevealed: "McCulloch was tracking Fiona's phone location",
         nextScene: "phone"
       },
-      { 
-        text: "Focus on the facts: Can you tell me exactly why Ms.Jones ended her relationship with Mr. McCulloch?",
-        cluerevealed: "They had a violent argument in the backyard last Tuesday", 
+      {
+        text: "Focus on the facts: Can you tell me exactly why Ms. Jones ended her relationship with Mr. McCulloch?",
+        cluerevealed: "They had a violent argument in the backyard last Tuesday",
         nextScene: "hallway"
       }
     ]
@@ -128,7 +123,7 @@ const scenes = {
     ]
   },
 
-   phone: {
+  phone: {
     title: "Encrypted Digital Files",
     text: "Select a timestamp from the recovery logs to analyze McCulloch's actions",
     choices: [
@@ -144,32 +139,58 @@ const scenes = {
         text: "[Log 3] Day of Incident - 18:30 - Router History",
         action: check_search
       },
+      {
+        text: "Use encryption key to decrypt hidden files",
+        action: decryptPhone
+      },
+      {
+        text: "Return to the hallway",
+        nextScene: "hallway"
+      }
     ]
   },
 
-   solution: {
-    title: "The solution",
-    text: "You solved the mystery!",
+  solution: {
+    title: "The Final Verdict",
+    character: "Case Review",
+    text: "You unlocked the evidence room and reviewed the case files. Based on what you uncovered, what is McCulloch guilty of?",
+    choices: [
+      {
+        text: "First-Degree Murder (Premeditated)",
+        nextScene: "murderVerdict"
+      },
+      {
+        text: "Manslaughter (Unplanned / Diminished Impulse Control)",
+        nextScene: "manslaughterVerdict"
+      },
+      {
+        text: "Go back to investigate more first",
+        nextScene: "hallway"
+      }
+    ]
+  },
+
+  murderVerdict: {
+    title: "Verdict: First-Degree Murder",
+    text: "You determined that tracking Fiona's location, searching for isolated properties, and arguing over a secret property prove McCulloch planned the crime.",
+    choices: []
+  },
+
+  manslaughterVerdict: {
+    title: "Verdict: Manslaughter",
+    text: "You determined that McCulloch's recent brain tumor and a sudden heated argument in the backyard show a lack of premeditation.",
     choices: []
   }
 };
 
 // --------------------------------------------------
 // UPDATE SCENES
-// Read through the comments below to see what this section does
-//
-// TO CUSTOMIZE THIS SECTION
-// 1) add a new const variable for each new field you added above
-// Make sure to match the ids used in your mock up with the fields 
-// 2) set the .textContent of each variable to the corresponding field in the scene object
-// Use sceneTitle as a model
 // --------------------------------------------------
 
 const sceneTitle = document.getElementById("scene-title");
 const sceneText = document.getElementById("scene-text");
 const choicesContainer = document.getElementById("choices-container");
-const characterName = document.getElementById("character-name"); 
-
+const characterName = document.getElementById("character-name");
 
 function updateScene(sceneName) {
   const scene = scenes[sceneName];
@@ -183,19 +204,23 @@ function updateScene(sceneName) {
     sceneTitle.textContent = scene.title || "";
   }
   sceneText.textContent = scene.text || "";
-  
+
   if (characterName) {
     characterName.textContent = scene.character || "";
   }
+
   choicesContainer.innerHTML = "";
   (scene.choices || []).forEach(function (choice) {
     const button = document.createElement("button");
-
     button.textContent = choice.text;
 
     button.addEventListener("click", function () {
       if (choice.action) {
         choice.action();
+      }
+
+      if (choice.cluerevealed && messageDisplay) {
+        messageDisplay.textContent = "Clue revealed: " + choice.cluerevealed;
       }
 
       if (choice.nextScene) {
@@ -207,28 +232,13 @@ function updateScene(sceneName) {
   });
 }
 
-if (sceneText && choicesContainer) {
-  updateScene(currentScene);
-}
-
-
 // --------------------------------------------------
-// HEALTH
-// Read through the comments below to see what this section does
-//
-// TO CUSTOMIZE THIS SECTION
-// Either customize the name from health to steps, stress, etc...
-// OR
-// create a copy of each step for each additional state you want to track throughout the game
+// HEALTH / STRESS
 // --------------------------------------------------
 
-// Create a variable for stress
 let stress = 0;
-
-// Display current health
 const stressDisplay = document.getElementById("stress-display");
 
-// Create a function to update health 
 function updateHealth(amount) {
   stress += amount;
   if (stressDisplay) {
@@ -236,40 +246,29 @@ function updateHealth(amount) {
   }
 }
 
-// This refreshes the health display
 updateHealth(0);
 
 // --------------------------------------------------
 // INVENTORY
-// Read through the comments below to see what this section does
-//
-// For now, you are probably leaving this section as is. 
 // --------------------------------------------------
 
-// Create a variable for inventory
 let inventory = [];
-
-// Display current inventory
 const inventoryDisplay = document.querySelector("#inventory-display");
 const messageDisplay = document.getElementById("message-display");
 
-// Create a function to update inventory 
 function pickUpItem(itemName) {
-    // Add itemName to the inventory array
-    // Show the updated inventory on the page
-  inventory.push(itemName);
-  if (inventoryDisplay) {
-    inventoryDisplay.textContent = inventory.join(", ");
+  if (!inventory.includes(itemName)) {
+    inventory.push(itemName);
+    if (inventoryDisplay) {
+      inventoryDisplay.textContent = inventory.join(", ");
+    }
   }
 }
 
 // --------------------------------------------------
-// CONDITIONAL 
-// Depending on how you want to implement the conditional logic, you may 
-// simply adjust the names below or you may need to expand upon this section
+// CONDITIONAL & LOG FUNCTIONS
 // --------------------------------------------------
 
-// Create a function that checks if the inventory contains one item and if so shows the win condition scene.
 function unlockDoor() {
   if (inventory.includes("brass key")) {
     updateScene("solution");
@@ -277,30 +276,33 @@ function unlockDoor() {
     messageDisplay.textContent = "The door is locked.";
   }
 }
-function decryptPhoneData() {
+
+function decryptPhone() {
   if (inventory.includes("encryption key")) {
     updateScene("secretFiles");
-    
-  } else {
-    if (messageDisplay) {
-      messageDisplay.textContent = "Access Denied: You need the encryption key to decrypt these files.";
-    }
+  } else if (messageDisplay) {
+    messageDisplay.textContent = "Files are encrypted. You need an encryption key.";
   }
 }
 
 function check_tumor() {
   if (messageDisplay) {
-    messageDisplay.textContent = "The medical event log is from three months before the incident.";
+    messageDisplay.textContent = "Medical Log: MRI from 3 months ago shows a tumor affecting impulse control.";
   }
 }
 
 function check_key() {
-  decryptPhoneData();
+  if (messageDisplay) {
+    messageDisplay.textContent = "Location Data: Spyware tracked Fiona's GPS for 3 weeks prior.";
+  }
 }
 
 function check_search() {
   if (messageDisplay) {
-    messageDisplay.textContent = "You selected the router history log from the day of the incident.";
+    messageDisplay.textContent = "Router History: Searches at 18:30 for 'isolated properties' and 'how to erase logs'.";
   }
 }
 
+if (sceneText && choicesContainer) {
+  updateScene(currentScene);
+}
